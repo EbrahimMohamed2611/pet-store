@@ -1,0 +1,11 @@
+create table brand (id integer not null auto_increment, name varchar(255), primary key (id));
+create table category (id bigint not null auto_increment, name varchar(255), primary key (id));
+create table order_info (id bigint not null auto_increment, city varchar(255), country varchar(255), street varchar(255), purchase_date datetime(6), status varchar(255), user_id bigint, primary key (id));
+create table order_items (price_after_discount float, quantity integer, order_id bigint not null, product_id bigint not null, primary key (order_id, product_id));
+create table product (id bigint not null auto_increment, available bit, description varchar(255), discount float, name varchar(255), price float, quantity integer, species tinyint, brand_id integer, category_id bigint, seller_id bigint, primary key (id));
+create table product_image (id bigint not null auto_increment, url varchar(255), product_id bigint, primary key (id));
+create table rate (rate_number integer not null, product_id bigint not null, user_id bigint not null, primary key (product_id, user_id));
+create table service (id bigint not null auto_increment, deliverable bit, description varchar(255), discount float, end_time time, name varchar(255), price float, start_time time, time_per_service bigint, provider_id bigint not null, type_id integer not null, primary key (id));
+create table service_type (id integer not null auto_increment, name varchar(255), primary key (id));
+create table species (id tinyint not null, name varchar(255), primary key (id));
+create table user_info (user_type varchar(31) not null, id bigint not null auto_increment, city varchar(255), country varchar(255), street varchar(255), birth_date date, email varchar(255), gender varchar(255), password varchar(255) not null, phone_number varchar(11), role varchar(255), user_name varchar(255), primary key (id));

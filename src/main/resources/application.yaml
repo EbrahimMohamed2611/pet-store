@@ -1,0 +1,91 @@
+server:
+  port: '${pet-store-application-port}'
+  servlet:
+    context-path: '/api/v1'
+
+spring:
+  application:
+    name: 'pet-store'
+  datasource:
+    url: '${db-url}'
+    username: '${db-username}'
+    password: '${db-password}'
+    hikari:
+      minimum-idle: 2
+      maximum-pool-size: 100
+      catalog: petstoreschema
+      register-mbeans: true
+  mail:
+    host: smtp.gmail.com
+    port: 465
+    username: '${email-username}'
+    password: '${email-password}'
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+          starttls:
+            enable: true
+
+
+  jpa:
+#    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database: MYSQL
+
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+#  flyway:
+#    schemas: petstoreschema
+
+springdoc:
+  swagger-ui:
+    path: api-docs
+  api-docs:
+    path: api-docs
+
+#google id for login with social media
+google:
+   id: '${google-id}'
+secret:
+   password: '${google-password}'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+#  server:
+#    port: '${pet-store-application-ssl-port}'
+#    ssl:
+#      enabled: true
+#      key-store: '${ssl-key-location}'
+#      key-store-type: PKCS12
+#      key-alias: '${ssl-key-alias}'
+#      key-store-password: '${ssl-key-password}'
+
+cloud:
+  aws:
+    credentials:
+      access-key: '${aws-access-key}'
+      secret-key: '${aws-secret-key}'
+    region:
+      static: us-east-2
+      auto: false
+    s3:
+      bucket-name: '${aws-bucket-name}'
+
+payment:
+  domain: 'http://ng-pet-store-frontend.s3-website.eu-west-3.amazonaws.com'
+  api:
+    key: '${payment-api-key}'
